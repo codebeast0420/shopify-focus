@@ -1,0 +1,45 @@
+<!-- snippets/onboarding-empty-collection.liquid -->
+
+{% assign index = 1 %}
+{% for i in (1..8) %}
+  {% case i %}
+    {% when 7 %}
+      {% assign index = 1 %}
+    {% when 8 %}
+      {% assign index = 2 %}
+  {% endcase %}
+  <div class="grid__item large--one-quarter">
+    <div class="product-container style2 clearfix">
+      <div class="p-relative product-container-inner">
+        <div class="product-image ">
+          <a href="/admin/products" class="grid__image">
+            {% capture imageUrl %}//cdn.shopify.com/s/images/themes/product-{{ index }}.png{% endcapture %}
+            {{ imageUrl | img_tag }}
+          </a>
+        </div>
+      </div>
+      <div class="information">
+        <h4 class="product-name"><a href="/admin/products">{{ 'homepage.onboarding.product_title' | t }}</a></h4>
+        <div class="product-price"><span class="amout"><span>$19.99</span></span></div>
+
+        <div class="product-actions">
+          <form method="post" action="/cart/add" class="add-to-cart">
+            <!-- <input type="submit" value="Buy now" class="btn" /> -->
+                <a class="button ajax_addtocart btn btn-outline btn-primary product-add-cart" href="/admin/products">
+                  <span class="select_options">{{ 'products.product.select_options' | t }}</span>
+                </a>
+          </form>
+          <a href="/admin/products" class="btn btn-outline btn-primary btn-details" >
+              <i class="fa fa-tag"></i>
+          </a>
+          <a class="btn btn-outline btn-primary wishlist add-to-wishlist awe-button product-quick-whistlist" href="/admin/products" data-toggle="tooltip" title="Add to whistlist">
+           <i class="fa fa-heart"></i>
+          </a>
+           
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {% assign index = index | plus: 1 %}
+{% endfor %}

@@ -1,0 +1,107 @@
+<!-- /snippets/footer.liquid -->
+
+<div class=footer-image-gallery>
+  {% include 'section-image-gallery' %}
+</div>
+<div class="site-footer__main">
+	<div class="wrapper">
+		<div class="grid">
+			{% assign footer_menu_1 = settings.footer_menu_1%}
+			{% assign footer_menu_2 = settings.footer_menu_2%}
+			{% assign footer_menu_3 = settings.footer_menu_3%}
+
+			<div class="grid__item large--three-twelfths ">
+			<div class="widget widget-address">
+				<div class="content">{{ settings.footer_block_1_content }}</div>
+				{{ settings.footer_block_1_address }}
+				{{ settings.footer_block_1_emails }}
+				{{ settings.footer_block_1_phone }}
+				
+			</div>
+			</div>
+			<div class="grid__item large--two-twelfths medium--four-twelfths">
+			<div class="widget">
+				<h4 class="widget-title">{{settings.footer_block_2_title}}</h4>
+				<ul class="links">
+					{% assign footerlinks_name = settings.footer_block_2 %}
+					{% for link in linklists[footerlinks_name].links %}
+					<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			</div>
+			<div class="grid__item large--two-twelfths medium--four-twelfths">
+			<div class="widget">
+				<h4 class="widget-title">{{settings.footer_block_3_title}}</h4>
+				<ul class="links">
+					{% assign footerlinks_name = settings.footer_block_3 %}
+					{% for link in linklists[footerlinks_name].links %}
+					<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			</div>
+			<div class="grid__item large--two-twelfths medium--four-twelfths">
+			<div class="widget">
+				<h4 class="widget-title">{{settings.footer_block_4_title}}</h4>
+				<ul class="links">
+					{% assign footerlinks_name = settings.footer_block_4 %}
+					{% for link in linklists[footerlinks_name].links %}
+					<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			</div>
+			<div class="grid__item large--three-twelfths ">
+			<div class="widget">
+				<h4 class="widget-title">{{settings.footer_block_5_title}}</h4>
+				<ul class="tags">
+					{% assign footerlinks_name = settings.footer_block_5 %}
+					{% for link in linklists[footerlinks_name].links %}
+					<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="site-footer__copyright">
+	<div class="wrapper">
+		<div class="grid">
+			<div class="grid__item copyright large--one-half">
+				{% if settings.copyright %}
+					{{ settings.copyright }}
+				{% endif %}
+			</div>
+			<div class="grid__item large--one-half text-right">
+				{% if settings.show_social_links %}
+                  <ul class="social-link">
+                      {% if settings.social_link_facebook != blank %}
+                          <li><a href="{{ settings.social_link_facebook }}"><i class="fa fa-facebook"></i></a></li>
+                      {% endif %}
+                      {% if settings.social_link_twitter != blank %}
+                          <li><a href="{{ settings.social_link_twitter }}"><i class="fa fa-twitter"></i></a></li>
+                      {% endif %}
+                      {% if settings.social_link_google_plus != blank %}
+                          <li><a href="{{ settings.social_link_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
+                      {% endif %}
+                      {% if settings.social_link_skype != blank %}
+                          <li><a href="{{ settings.social_link_skype }}"><i class="fa fa-skype"></i></a></li>
+                      {% endif %}
+                      {% if settings.social_link_pinterest != blank %}
+                          <li><a href="{{ settings.social_link_pinterest }}"><i class="fa fa-pinterest"></i></a></li>
+                      {% endif %}
+                      {% if settings.social_link_instagram != blank %}
+                          <li><a href="{{ settings.social_link_instagram }}"><i class="fa fa-instagram"></i></a></li>
+                      {% endif %}
+                  </ul>
+              	{% endif %}
+				{% capture payment_logo %}footer_payment_logo.png{% endcapture %}
+				{% if settings.footer_payment_logo %}
+					<img src="{{ payment_logo | asset_url }}" alt="">
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

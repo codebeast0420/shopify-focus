@@ -1,0 +1,23 @@
+<!-- /templates/snippets/section-image-gallery.liquid -->
+
+<div class="widget widget-gallery space-top-{{ settings.margin-top-section }} no-margin space-{{ settings.margin-bottom-section }}">
+	<div class="wrapper">
+		<div class="grid grid-style-2">
+			
+			{% for i in (1..10) %}
+				{% capture _enable %}image_gallery_{{ i }}_enable{% endcapture %}
+				{% capture _image %}image_gallery_{{ i }}.jpg{% endcapture %}
+				{% if settings[_enable] %}
+					<div class="grid__item large--one-tenth medium--one-tenth">
+						<div class="image">
+							<a href="{{ _image | asset_url }}" class="fancybox">
+								<img src="{{ _image | asset_url }}" alt="">
+							</a>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+			
+		</div>
+	</div>
+</div>

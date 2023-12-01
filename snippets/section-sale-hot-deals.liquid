@@ -1,0 +1,46 @@
+<!-- /templates/snippets/section-newsletter-banner-hot-deals.liquid -->
+
+<div class="section-newsletter-banner-hot-deals space-top-{{ settings.margin-top-section }} space-60">
+  <div class="grid">
+    <div class="grid__item large--one-half ">
+      <div class="widget">
+        {% assign products_limit = settings.sale_product_limit %}
+        {% assign title = settings.sale_product_title %}
+        {% assign col = settings.sale_product_collection %}
+
+        <h3 class="widget-title"><span>{{title}}</span></h3>
+
+        <div class="grid">
+          {% for product in collections[col].products limit: products_limit %}
+          <div class="grid__item large--one-half">
+            {% include 'product-list1' %}
+          </div>
+          {%else%}
+            {% include 'onboarding-featured-collections' %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__item large--one-half">
+      <div class="widget widget-dealproduct">
+      <!-- hot deals -->
+      {% assign products_per_row = 1 %}
+      {% assign products_limit = settings.hot_deals_number %}
+      {% assign col = settings.hot_deals_collection %}
+
+      {% assign dealTime = true %}
+      {% if settings.hot_deals_title != blank %}
+      	<h3 class="title">{{ settings.hot_deals_title }}</h3>
+      {% endif %}
+      <div class="owl-carousel widget widget-products-deals" data-items="1" data-carousel="owl" data-pagination="false" data-nav="true">
+        {% for product in collections[col].products limit: products_limit %}
+          {% include 'product-item-deals' %}
+        {%else%}
+          {% include 'onboarding-featured-products' %}
+        {% endfor %}
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

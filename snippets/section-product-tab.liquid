@@ -1,0 +1,66 @@
+<!-- /templates/snippets/section-product-tab.liquid -->
+
+{% assign products_per_row = settings.tab_num %}
+{% assign col1 = settings.tab_collection_1 %}
+{% assign col2 = settings.tab_collection_2 %}
+{% assign col3 = settings.tab_collection_3 %}
+{% assign col4 = settings.tab_collection_4 %}
+
+{% case settings.tab_num %}
+	{% when '2' %}
+		 {% capture grid_item_width %} large--one-half medium--one-half {% endcapture %}
+	{% when '3' %}
+		 {% capture grid_item_width %} large--one-third medium--one-third {% endcapture %}
+	{% when '4' %}
+		 {% capture grid_item_width %} large--one-quarter medium--one-half {% endcapture %}
+	{% when '5' %}
+		 {% capture grid_item_width %} large--one-fifth medium--one-half {% endcapture %}
+	{% when '6' %}
+		 {% capture grid_item_width %} large--one-sixth medium--one-half {% endcapture %}
+	{% else %}
+		 {% capture grid_item_width %} large--one-quarter medium--one-half {% endcapture %}
+{% endcase %}
+
+<div class="tab-products clearfix space-top-{{ settings.margin-top-section }} space-{{ settings.margin-bottom-section }}">
+	<div class=" widget-products">
+		<div class="tabs-container tabs-v1 text-center space-50">
+			<ul class="tabs-list nav nav-tabs" role="tablist">
+				{% for i in (1..4) %}
+					{% capture k %}tab_collection_{{ i }}{% endcapture %}
+					{% capture t %}tab_title_{{ i }}{% endcapture %}
+					{% capture _enable %}tab_{{ i }}_enable{% endcapture %}
+					{% if settings[_enable] %}
+						<li><a href="#producttab{{ i }}" data-toggle="tab">{{ settings[t] }}</a></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+		
+		<div class="tab-content">
+			{% for i in (1..4) %}
+				{% capture c %}tab_collection_{{ i }}{% endcapture %}
+				{% capture _enable %}tab_{{ i }}_enable{% endcapture %}
+				{% if settings[_enable] %}
+				<div class="tab-pane" id="producttab{{ i }}">
+					<div class="grid grid-seconrow">
+						{% for product in collections[settings[c]].products limit: settings.tab_limit %}
+	                  		<div class="grid__item {{ grid_item_width }}">
+								{% include 'product-item' %}
+	                  		</div>
+						{%else%}
+							{% include 'onboarding-empty-collection' %}
+						{% endfor %}
+					</div>
+					{% if settings.tab_view_all != blank %}
+					<div class="read-more text-center space-top-30">
+						<a class="btn btn-readmore btn-lg btn--full" href="{{ collections[settings[c]].url }}">{{ settings.tab_view_all }} <i class="text-theme fa fa-long-arrow-right"></i></a>
+					</div>
+					{% endif %}
+				</div>
+				{% endif %}
+			{% endfor %}
+
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,65 @@
+<!-- /templates/snippets/section-testimonials-newsletter.liquid -->
+
+<div class="section-testimonials-newsletter no-margin space-top-{{ settings.margin-top-section }} space-{{ settings.margin-bottom-section }}">
+  <div class="wrapper">
+    <div class="grid">
+      <div class="grid__item large--two-thirds testimonials space-20 style2">
+          {% capture title %}testimonial_title{% endcapture %}
+
+          <div class="owl-carousel" data-items="1" data-carousel="owl" data-pagination="true" data-nav="true">
+
+              {% for i in (1..5) %}
+                  {% capture enable %}testimonial_{{ i }}{% endcapture %}
+                  {% capture des %}testimonial_des_{{ i }}{% endcapture %}
+                  {% capture name %}testimonial_name_{{ i }}{% endcapture %}
+                  {% capture job %}testimonial_job_{{ i }}{% endcapture %}
+                  {% capture _img %}testimonial_img_{{ i }}.jpg{% endcapture %}
+
+                  {% if settings[enable] %}
+                      <div class="clearfix ">
+                          <div class="testimonials-body">
+                          <div class="grid">
+                              <div class="testimonials-profile text-center grid__item large--three-twelfths medium--three-twelfths">
+                                  {% if _img != blank %}
+                                      <div class="avatar">
+                                      <img src="{{_img| asset_url}}" alt="{{_img}}">
+                                      </div>
+                                  {% endif %}
+                                  <p class="no-margin">
+                                  <span class="name">{{settings[name]}}</span>
+                                  <span class="job">{{settings[job]}}</span>
+                                  </p>
+                              </div>
+                              <div class="testimonials-left grid__item large--nine-twelfths medium--nine-twelfths">
+                              <div class="testimonials-quote">
+                                  <p>{{settings[des]}}</p>
+                              </div>
+                              </div>
+                          </div>	
+                          </div>
+                      </div>
+                  {% endif %}
+              {% endfor %}
+          </div>
+      </div>
+
+      <div class="grid__item large--one-third">
+        <div class="news-letter widget style2">
+          <h3 class="widget-title"><span>{{settings.newsletter_title}}</span></h3>
+          {% if settings.newsletter_form_action != blank %}
+            {% assign form_action = settings.newsletter_form_action %}
+          {% else %}
+            {% assign form_action = '#' %}
+          {% endif %}
+          <form action="{{ form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group form-news">
+            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="input-group-field" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" >
+            <span class="input-group-btn">
+              <input type="submit" class="btn btn-primary" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+            </span>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

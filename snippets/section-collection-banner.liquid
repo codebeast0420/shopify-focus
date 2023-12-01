@@ -1,0 +1,32 @@
+<!-- /templates/snippets/section-collection-banner.liquid -->
+
+{% capture _bg %}collection_banner_bg.jpg{% endcapture %}
+
+<div class="section-collection-banner widget space-top-{{ settings.margin-top-section }} }} space-{{ settings.margin-bottom-section }}" 
+     {% if settings.collection_banner_bg_enable %}style="background-image: url({{ _bg | asset_url }});"{% endif %}>
+  <div class="wrapper">
+    <div class="heading-title text-center">
+      <h3 class="widget-title">{{settings.collection_banner_title}}</h3>
+      {% if settings.collection_banner_description != blank %}
+          <p>{{ settings.collection_banner_description }}</p>
+      {% endif %}
+    </div>
+    <div class="grid">
+      {% for i in (1..3) %}
+            {% capture _image %}collection_banner_image_{{ i }}.jpg{% endcapture %}
+            {% capture _url %}collection_banner_image_{{ i }}_url{% endcapture %}
+            <div class="grid__item large--one-third">
+              {% if settings[_url] != blank %}
+                  <a href="{{ settings[_url] }}">
+              {% endif %}
+                <div class="image">
+                  <img src="{{ _image | asset_url }}" alt="">
+                </div>
+              {% if settings[_url] != blank %}
+                  </a>
+              {% endif %}
+            </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

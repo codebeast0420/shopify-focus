@@ -1,0 +1,45 @@
+<!-- /templates/snippets/section-testimonial.liquid -->
+
+{% capture background_enable %}enable_testimonial_bg{% endcapture %}
+{% capture background_img %}testimonial_bg_img.jpg{% endcapture %}
+
+<div class="testimonials space-top-{{ settings.margin-top-section }} space-{{ settings.margin-bottom-section }}"{% if settings[background_enable] %} style="background-image: url({{background_img| asset_url}});"{% endif %} >
+
+	{% capture title %}testimonial_title{% endcapture %}
+
+	<div class="owl-carousel" data-items="1" data-carousel="owl" data-pagination="true" data-nav="true">
+	
+		{% for i in (1..5) %}
+			{% capture enable %}testimonial_{{ i }}{% endcapture %}
+			{% capture des %}testimonial_des_{{ i }}{% endcapture %}
+			{% capture name %}testimonial_name_{{ i }}{% endcapture %}
+			{% capture job %}testimonial_job_{{ i }}{% endcapture %}
+			{% capture _img %}testimonial_img_{{ i }}.jpg{% endcapture %}
+
+			{% if settings[enable] %}
+				<div class="clearfix">
+					<div class="testimonials-body">
+					<div class="grid">
+						<div class="testimonials-profile text-center grid__item large--two-twelfths medium--two-twelfths">
+							{% if _img != blank %}
+								<div class="avatar">
+								<img src="{{_img| asset_url}}" alt="{{_img}}">
+								</div>
+							{% endif %}
+							<p class="no-margin">
+							<span class="name">{{settings[name]}}</span>
+							<span class="job">{{settings[job]}}</span>
+							</p>
+						</div>
+						<div class="testimonials-left grid__item large--ten-twelfths medium--ten-twelfths">
+						<div class="testimonials-quote">
+							<p>{{settings[des]}}</p>
+						</div>
+						</div>
+					</div>	
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>

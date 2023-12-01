@@ -1,0 +1,39 @@
+<!-- /templates/snippets/section-banner-image.liquid -->
+
+<div class="section-banner-image space-top-{{ settings.margin-top-section }} space-{{ settings.margin-bottom-section }}">
+	<div class="grid">
+      {% capture _image %}banner_image_1.jpg{% endcapture %}
+      {% capture _url %}banner_image_1_url{% endcapture %}
+
+        <div class="grid__item large--seven-twelfths">
+          {% if settings[_url] != blank %}
+          <a href="{{ settings[_url] }}">
+            {% endif %}
+            <div class="image">
+            <img src="{{ _image | asset_url }}" alt="">
+            </div>
+            {% if settings[_url] != blank %}
+          </a>
+          {% endif %}
+        </div>
+		<div class="grid__item large--five-twelfths">
+          	<div class="grid banner-left">
+              {% for i in (2..3) %}
+                {% capture _image %}banner_image_{{ i }}.jpg{% endcapture %}
+                {% capture _url %}banner_image_{{ i }}_url{% endcapture %}
+                <div class="grid__item space-10">
+                  {% if settings[_url] != blank %}
+                  <a href="{{ settings[_url] }}">
+                    {% endif %}
+                    <div class="image">
+                    <img src="{{ _image | asset_url }}" alt="">
+                    </div>
+                    {% if settings[_url] != blank %}
+                  </a>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+      	</div>
+      </div>
+</div>

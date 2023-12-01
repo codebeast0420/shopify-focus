@@ -1,0 +1,6 @@
+<div class="sidebar__widget">
+	{% assign collection_1 = collections[settings.upsell_collection] %}
+	{% for product in collection_1.products %}
+		{% include 'product-grid-item' %}
+	{% endfor %}
+</div>

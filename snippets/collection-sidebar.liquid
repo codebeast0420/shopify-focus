@@ -1,0 +1,82 @@
+<!-- /snippets/collection-sidebar.liquid -->
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+{% assign on_sale = true %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+{% assign sold_out = false %}
+{% endif %}
+
+{% if settings.widget_enable_categires_block %}
+  <div class="widget-category widget">
+    <h3 class="widget-title">{{ settings.widget_categires_block_title }}</h3>
+    <ul class="list-border">
+      {% capture collection_title %}{{ collection.title }}{% endcapture %}
+      {% for collection in collections %}
+      <li {% if collection_title == collection.title %}class="filter--active" {% endif %}><a  href="{{ collection.url }}" title="{{ collection.title }}">{{ collection.title }} <span class="count">{{collection.products_count}}</span></a></li>
+      {% endfor %}
+    </ul>
+  </div><!-- end category sidebar -->
+{% endif %}
+
+{% if settings.brands_enable %}
+<div class="widget-brands widget">
+    <h3 class="widget-title">{{'collections.sidebar.brands'|t}}</h3>
+    <ul class="square">
+      {% capture collection_title %}{{ collection.title }}{% endcapture %}
+      {% for product_vendor in collection.all_vendors %}
+      <li >{{ product_vendor | link_to_vendor }}</li>
+      {% endfor %}
+
+    </ul>
+</div> <!-- end brand sidebar -->
+{% endif %}
+
+<!-- {% include 'collection.filterby-color' %} -->
+{% if settings.widget_enable_catalog and template contains 'collection' %}
+  <div class="filter-block">
+
+    {% include 'collection.shopby-color' %}
+    {% include 'collection.shopby-price' %}
+  </div>
+{% endif %}
+
+
+{% if settings.widget_enable_1 %}
+<div class="widget">
+  <h3 class="widget-title">{{ settings.widget_title_1 }}</h3>
+  {% assign collection_1 = collections[settings.widget_collection_1] %}
+  <div class="list">
+  {% for product in collection_1.products limit:3 %}
+    {% include 'product-list1' %}
+  {% endfor %}
+  </div>
+</div> <!-- end widget 1 -->
+{% endif %}
+
+{% if settings.tags_enable and settings.tags_menu %}
+
+<div class="widget-tags widget clearfix">
+  <h4 class="widget-title">{{ 'collections.sidebar.tags' | t }}</h4>
+  <ul class="widget__content tags">
+
+      {% assign footerlinks_name = settings.tags_menu %}
+      {% for link in linklists[footerlinks_name].links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    
+  </ul>
+
+</div> <!-- end tags -->
+{% endif %}
+
+
+
+
+{% if settings.ads_enable %}
+<div class="widget-ads widget">
+    <a href="{{settings.ads_block_url}}">{{ 'ads_block.jpg'| asset_url | img_tag}}</a>
+</div><!-- end advertising -->
+{% endif %}

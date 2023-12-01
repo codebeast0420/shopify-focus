@@ -1,0 +1,40 @@
+<!-- /snippets/blog-sidebar.liquid -->
+
+{% if settings.blog_sidebar_categories_enable %}
+  <div class="widget-categories widget">
+    <h4 class="widget-title">{{ settings.blog_sidebar_categories_title }}</h4>
+    <ul class="list-border">
+      {% for link in linklists[settings.blog_sidebar_categories_menu].links %}
+      	<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+
+{% if settings.blog_sidebar_products_enable %}
+  <div class="widget">
+    <h3 class="widget-title">{{ settings.blog_sidebar_products_title }}</h3>
+    {% assign collection_1 = collections[settings.blog_sidebar_products_collection] %}
+    <div class="list">
+    {% for product in collection_1.products limit: settings.blog_sidebar_products_number %}
+      {% include 'product-list1' %}
+    {% endfor %}
+    </div>
+  </div> <!-- end widget 1 -->
+{% endif %}
+
+{% if settings.blog_sidebar_tags_enable and settings.blog_sidebar_tags_menu %}
+
+<div class="widget-tags widget">
+  <h4 class="widget-title">{{ 'collections.sidebar.tags' | t }}</h4>
+  <ul class="widget__content tags">
+
+      {% assign _links_name = settings.blog_sidebar_tags_menu %}
+      {% for link in linklists[_links_name].links %}
+      	<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    
+  </ul>
+
+</div> <!-- end tags -->
+{% endif %}

@@ -1,0 +1,32 @@
+<div class="site-header__topbar">
+  <div class="wrapper">
+    <div class="left">
+      {% include 'currency-picker' %}
+    </div>
+
+    <div class="right">
+      <ul class="social-link">
+            {% if settings.social_link_facebook != blank %}
+                <li><a href="{{ settings.social_link_facebook }}"><i class="fa fa-facebook"></i></a></li>
+            {% endif %}
+            {% if settings.social_link_twitter != blank %}
+                <li><a href="{{ settings.social_link_twitter }}"><i class="fa fa-twitter"></i></a></li>
+            {% endif %}
+            {% if settings.social_link_google_plus != blank %}
+                <li><a href="{{ settings.social_link_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
+            {% endif %}
+            {% if settings.social_link_skype != blank %}
+                <li><a href="{{ settings.social_link_skype }}"><i class="fa fa-skype"></i></a></li>
+            {% endif %}
+            {% if settings.social_link_pinterest != blank %}
+                <li><a href="{{ settings.social_link_pinterest }}"><i class="fa fa-pinterest"></i></a></li>
+            {% endif %}
+            {% if settings.social_link_instagram != blank %}
+                <li><a href="{{ settings.social_link_instagram }}"><i class="fa fa-instagram"></i></a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    
+  </div>
+</div>

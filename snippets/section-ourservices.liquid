@@ -1,0 +1,33 @@
+<!-- /templates/snippets/section-ourservice.liquid -->
+
+<div class="widget ourservices no-margin space-top-{{ settings.margin-top-section }} space-{{ settings.margin-bottom-section }}">
+	<div class="wrapper-banner">
+      <div class="grid">
+        <div class="grid-banner-service-inner style1 clearfix">
+          <div class="service-inner clearfix">
+          {% for i in (1..3) %}
+            {% capture _title %}ourservice_{{ i }}_title{% endcapture %}
+            {% capture _desc %}ourservice_{{ i }}_desc{% endcapture %}
+            {% capture _icon %}ourservice_{{ i }}_icon{% endcapture %}
+          	<div class="grid__item large--one-third service-{{i}}">
+                  <div class="ourservice-inner">
+                      <div class="ourservice-info">
+                        <div class="ourservice-info-inner">
+                        	{% if settings[_title] != blank %}
+                            <b class="ourservice-heading">{{ settings[_title] }}</b>
+      					           {% endif %}
+                        	{% if settings[_desc] != blank %}
+                            <span class="ourservice-content">
+                                {{ settings[_desc] }}
+                            </span>
+                          	{% endif %}
+                       </div>
+                     </div>
+                  </div>
+          	</div>
+          {% endfor %}
+          </div>
+      </div>
+      </div>
+	</div>
+</div>

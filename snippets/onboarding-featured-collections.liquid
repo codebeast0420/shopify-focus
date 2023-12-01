@@ -1,0 +1,47 @@
+<!-- snippets/onboarding-featured-collections.liquid -->
+
+{% for i in (1..4) %}
+  <div class="grid__item large--one-half">
+    <div class="grid layout-list1 product-container">
+      <div class="product-container-inner clearfix">
+        <div class="images-list grid__item large--one-half medium--one-half">
+          <div class="product-thumbnail">
+            <a href="/admin/products" class="grid__image">
+              {% capture imageUrl %}//cdn.shopify.com/s/images/themes/product-{{ i }}.png{% endcapture %}
+              {{ imageUrl | img_tag }}
+            </a>
+            <!-- quickview -->
+            <a href="/admin/products" class="product-quick-view btn-quickview" title="">
+                <i class="fa fa-eye"></i>
+            </a>
+          </div>
+        </div>
+        <div class="info grid__item large--one-half medium--one-half">
+          <h4 class="product-name">
+            <a href="#">{{ 'homepage.onboarding.collection_title' | t }}</a><br>
+            {{ 'collections.general.items_with_count' | t: count: i }}
+          </h4>
+          <div class="product-price"><span class="amout"><span>$19.99</span></span></div>
+
+          <div class="action">
+
+            <div class="add-cart">
+              <form method="post" action="/cart/add" class="add-to-cart">
+                <a class="button ajax_addtocart btn btn-outline btn-primary product-add-cart" href="/admin/products">
+                  <span class="select_options">{{ 'products.product.select_options' | t }}</span>
+                </a>
+              </form>
+            </div>
+            <a href="/admin/products" class="btn btn-outline btn-primary btn-details" >
+              <i class="fa fa-tag"></i>
+            </a>
+            <a class="btn btn-outline btn-primary wishlist add-to-wishlist awe-button product-quick-whistlist" href="/admin/products" data-toggle="tooltip" title="Add to whistlist">
+             <i class="fa fa-heart"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}

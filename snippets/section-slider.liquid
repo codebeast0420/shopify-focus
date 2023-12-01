@@ -1,0 +1,56 @@
+<!-- /templates/snippets/section-slider-collection-banner.liquid -->
+
+<div class="section-slider no-margin space-20 space-top-{{ settings.margin-top-section }}">
+  <div
+    class="slider-owl owl-carousel"
+    data-items="1"
+    data-carousel="owl"
+    data-pagination="true"
+    data-nav="true"
+    data-autoplaytimeout="{{ settings.slide_carousel_interval }}"
+  >
+    {% for i in (1..5) %}
+      {% capture _enable %}slide_carousel_{{ i }}_enable{% endcapture %}
+      {% capture _image %}slide_carousel_{{ i }}_image.jpg{% endcapture %}
+      {% capture _header %}slide_carousel_{{ i }}_header{% endcapture %}
+      {% capture _subheader %}slide_carousel_{{ i }}_subheader{% endcapture %}
+      {% capture _year %}slide_carousel_{{ i }}_year{% endcapture %}
+      {% capture _button %}slide_carousel_{{ i }}_button{% endcapture %}
+      {% capture _link %}slide_carousel_{{ i }}_link{% endcapture %}
+      {% capture _style %}slide_carousel_{{ i }}_style{% endcapture %}
+
+      {% assign enable = settings[_enable] %}
+      {% assign slider_link = settings[_link] %}
+
+      {% if enable %}
+        <div class="slider-content {{ settings[_style] }}" data-link="{{ slider_link }}">
+          <div class="slider-home slide-fullwidth">
+            <img src="{{ _image | asset_url }}" alt="">
+            <div class="wrapper-content">
+              <div class="caption-wrapper">
+                <div class="wrapper">
+                  <div class="slider-caption caption">
+                    {% if settings[_year] != blank %}
+                      <p class="year">{{ settings[_year] }}</p>
+                    {% endif %}
+                    {% if settings[_header] != blank %}
+                      <h1>{{ settings[_header] }}</h1>
+                    {% endif %}
+                    {% if settings[_subheader] != blank %}
+                      <p class="subheader">{{ settings[_subheader] }}</p>
+                    {% endif %}
+                    {% if settings[_button] != blank %}
+                      <a class="btn-border" href="{{ settings[_link] }}"
+                        ><i class="fa text-theme fa-long-arrow-right"></i>{{ settings[_button] -}}
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

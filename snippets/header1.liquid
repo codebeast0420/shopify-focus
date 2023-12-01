@@ -1,0 +1,96 @@
+<!-- /snippets/header1.liquid -->
+
+{% include 'topbar' %}
+
+<div class="site-header-logo main-sticky-header clearfix">
+  <div class="wrapper">
+      <div class="grid">
+        <div class="grid__item large--one-third medium-down--hide ">
+          <ul class="social-link">
+              {% if settings.social_link_facebook != blank %}
+                  <li><a href="{{ settings.social_link_facebook }}"><i class="fa fa-facebook"></i></a></li>
+              {% endif %}
+              {% if settings.social_link_twitter != blank %}
+                  <li><a href="{{ settings.social_link_twitter }}"><i class="fa fa-twitter"></i></a></li>
+              {% endif %}
+              {% if settings.social_link_google_plus != blank %}
+                  <li><a href="{{ settings.social_link_google_plus }}"><i class="fa fa-google-plus"></i></a></li>
+              {% endif %}
+              {% if settings.social_link_skype != blank %}
+                  <li><a href="{{ settings.social_link_skype }}"><i class="fa fa-skype"></i></a></li>
+              {% endif %}
+              {% if settings.social_link_pinterest != blank %}
+                  <li><a href="{{ settings.social_link_pinterest }}"><i class="fa fa-pinterest"></i></a></li>
+              {% endif %}
+              {% if settings.social_link_instagram != blank %}
+                  <li><a href="{{ settings.social_link_instagram }}"><i class="fa fa-instagram"></i></a></li>
+              {% endif %}
+          </ul>
+        </div>
+        
+        <div class="grid__item medium--one-third large--hide small--one-third">
+          <div class="site-nav--mobile left">
+            <button type="button" class="btn btn-default icon-fallback-text site-nav__link js-drawer-open-left" aria-controls="NavDrawer" aria-expanded="false">
+              <span class="icon icon-hamburger" aria-hidden="true"></span>
+              <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid__item large--one-third medium--one-third small--one-third">
+          <div class="logo text-center">
+            {% if template == 'index' %}
+              <h1 class="site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            {% else %}
+              <div class="h1 site-header__logo" itemscope itemtype="http://schema.org/Organization">
+            {% endif %}
+              {% if settings.logo_use_image %}
+                <a href="/" itemprop="url" class="site-header__logo-link">
+                  <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" itemprop="logo">
+                </a>
+              {% else %}
+                <a href="/" itemprop="url">{{ shop.name }}</a>
+              {% endif %}
+            {% if template == 'index' %}
+              </h1>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="grid__item large--one-third medium--one-third small--one-third">
+          <div class="header-settings right">
+              <!-- search -->
+              <div class="site-header__search medium-down--hide dropdown">
+                {% include 'search-bar' %}
+              </div>
+              
+              <!-- cart top -->
+              <div class="cart-top">
+                <a href="/cart" class="site-header__cart-toggle js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+                  <span id="CartCount">{{ cart.item_count }}</span>
+                  <!--
+                  {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+                  <span id="CartCost">{{ cart.total_price | money }}</span>
+                  -->
+                </a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-header-mainmenu">
+        <div class="site-header-mainmenu-inner">
+        <div class="wrapper">
+          <div class="header-nav">
+                <nav class="nav-bar" role="navigation">
+                  {% include 'menu' %}
+                </nav>
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>
+

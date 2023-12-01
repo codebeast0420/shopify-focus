@@ -1,0 +1,14 @@
+
+{% if settings.currency_enable %}
+ <div class="dropdown right" id="currencies">
+ 	<span data-toggle="dropdown" class="dropdown-toggle">
+		{{ 'currency.currency' | t }} <span id="currency-current">{{ shop.currency }}</span><i class="caret"></i>
+	</span>
+	<ul class="dropdown-menu">
+		{% assign supported = settings.supported_currencies | split: ' ' %}
+		{% for c in supported %}
+			<li><a href="javascript:void(0);" rel="nofollow" data-currency="{{c}}">{{c}}</a></li>
+		{% endfor %}
+	</ul>
+</div>
+{% endif %}
