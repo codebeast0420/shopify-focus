@@ -2694,6 +2694,17 @@ label.error {
   height: 100%;
 }
 
+.ads-section {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.fashion-trends {
+  display: flex;
+  flex-direction: column;
+}
+
 .drawer {
   @include promote-layer();
   display: none;
@@ -4533,6 +4544,10 @@ a:focus {
     font-family: 'Montserrat', sans-serif;
     letter-spacing:4px;
     color:$colorDefault;
+    writing-mode: vertical-rl;
+  }
+  .sub-header {
+    font-weight: bold
   }
   h1{
     font-size:36px;
